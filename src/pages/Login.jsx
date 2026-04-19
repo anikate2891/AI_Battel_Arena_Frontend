@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiFetch } from "../utils/api";
+import { apiFetch } from "../utils/api.js";
 
 const Login = () => {
   const [form, setForm] = useState({
