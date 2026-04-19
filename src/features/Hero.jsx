@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import { deleteHistoryChat, sendChat } from "../api/chat.api.js";
 import { handleStream } from "../utils/stremHandeler.js";
+import { apiFetch } from "../utils/api.js";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -29,10 +30,12 @@ const Hero = () => {
   }), []);
 
   const loadHistory = useCallback(async () => {
-    const res = await fetch("/api/chats", { credentials: "include" });
+    const res = await apiFetch("/api/chats");
+
     if (!res.ok) {
       throw new Error(`Failed to load history: ${res.status}`);
     }
+
     const data = await res.json();
     setHistory(data.map(mapChatFromApi));
   }, [mapChatFromApi]);

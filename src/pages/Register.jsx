@@ -2,6 +2,8 @@
   import { useState } from "react";
   import { useNavigate } from "react-router-dom";
 
+  import { apiFetch } from "../utils/api.js";
+
   
 
   const Register = () => {
@@ -19,12 +21,12 @@
     setError("");
 
     try {
-      const res = await fetch("/api/auth/register", {
+      const res = await apiFetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
+        // credentials: "include",
         body: JSON.stringify(form),
       });
 

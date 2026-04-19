@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../utils/api";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -16,12 +17,12 @@ const Login = () => {
   setError("");
 
   try {
-    const res = await fetch("/api/auth/login", {
+    const res = await apiFetch("/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
+      // credentials: "include",
       body: JSON.stringify(form),
     });
 

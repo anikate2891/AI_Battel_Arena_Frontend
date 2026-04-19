@@ -1,10 +1,11 @@
+import { apiFetch } from "../utils/api.js";
+
 export const sendChat = async (problem) => {
-    const response = await fetch("/api/chat", {
+    const response = await apiFetch("/api/chat", {
         method: "POST",
         headers: {
-        "Content-Type": "application/json",
-    },
-        credentials: "include",
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify({ problem }),
     });
 
@@ -12,13 +13,12 @@ export const sendChat = async (problem) => {
         throw new Error(`Request failed: ${response.status}`);
     }
 
-    return response.body.getReader(); // 👈 stream return
+    return response.body.getReader();
 };
 
 export const deleteHistoryChat = async (chatId) => {
-    const response = await fetch(`/api/chats/${chatId}`, {
+    const response = await apiFetch(`/api/chats/${chatId}`, {
         method: "DELETE",
-        credentials: "include",
     });
 
     if (!response.ok) {
